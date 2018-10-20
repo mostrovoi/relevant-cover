@@ -1,11 +1,58 @@
-# Developing and Securing RESTful APIs with Spring Boot
-This sample application shows how to develop a Restful api with
-SpringBoot and secure it using Spring Security via JSON Web Tokens.
+# Relevant cover test
 
-# How To Setup The Application And Run It
-* Make sure you have gradle installed on your system and an IDE. If 
-you don't have an IDE don't worry you can still follow with a text editor and 
-the terminal.
-* Make sure you have Java 10 installed on your system. [Get it here](http://www.oracle.com/technetwork/java/javase/downloads/jdk10-downloads-4416644.html)
-* Clone the repository using the command `git clone https://github.com/vladimirfomene/springboot-auth-updated.git`
-* Run `gradle bootrun` to build and run the project or run the project from your ide(make sure you build it before running)
+## Requirements 
+
+Java (8+) installed
+Git client (optional)
+Curl or tool to make http requests e.g. postman, chrome browser, etc.
+
+## How to build it
+
+Start by cloning this repository in your local machine 
+<code>git clone https://github.com/mostrovoi/relevant-cover.git</code>
+
+This project uses gradle as build tool. Go to relevant-cover folder and run
+<code>./gradlew bootRun</code>
+
+This will start up a server listening in port 8100
+
+## How to use it
+
+This server is a sample test using JWT tokens as authentication mechanism for a REST api.
+There are 2 endpoints available
+
+<code>/login 
+
+/users/{username}</code>
+
+### Login operation
+
+You should POST a request to http://localhost:8100/login 
+with your username and password in the body payload e.g with curl.:
+
+<code>curl -i -H "Content-Type: application/json" -X POST -d '{
+    "username": "xxxx",
+    "password": "xxxx"
+}' http://localhost:8100/login</code>
+
+Where xxxx is your actual user and password. This operation, if succesful, will return a Bearer token in the response. This token should be used for all operations requiring authorization
+
+#### Get a user
+
+There is the endpoint /users/{username} which will retrieve the details of a user. e.g.:
+
+<code>curl -H "Authorization: Bearer xxx.yyy.zzz" http://localhost:8100/users/xxxx</code>
+
+Here, you should copy the token obtained before and replace xxx by the user you want to get info from.
+
+#### Data
+
+This demo uses an in-memory database already populated with 2 users:
+
+
+| user | password |
+| ---- |-----|
+| oscar | oscar |
+| bruno | bruno |
+
+You can try out the demo with this data. Feedback welcome!
