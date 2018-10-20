@@ -3,7 +3,9 @@
 ## Requirements 
 
 Java (8+) installed
+
 Git client (optional)
+
 Curl or tool to make http requests e.g. postman, chrome browser, etc.
 
 ## How to build it
